@@ -1,0 +1,70 @@
+body {
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    background: #374664;
+    display: flex;
+}
+.form-container{
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    background: #9ccbd2;
+    box-sizing: border-box;
+    padding: 20px;
+    border-radius: 10px;
+    height: 60%;
+}
+.player-one-input{
+    display: flex;
+    gap: 10px;
+}
+.player-two-input{
+    display: flex;
+    gap: 10px;
+}
+
+h1{
+    color: #1f4d5b;
+    text-align: center;
+}
+
+.input{
+    border-radius: 10px;
+    border: none;
+    box-sizing: border-box;
+    padding: 10px;
+    outline: none;
+}
+.input-text{
+    background: #051c49;
+    padding: 5px;
+}
+.input-two{
+    color: rgba(135, 211, 5, 0.68);
+}
+.input-one{
+     color: rgba(189, 148, 250, 0.68);
+ }
+.enter-names-text{
+    color: #1f4d5b;
+}
+.play-button{
+    width: 50%;
+    align-self: center;
+    background-color: #8396bb;
+    border: none;
+    color: #105057;
+    font-weight: bold;
+    border-radius: 5px;
+    height: 50px;
+}
+button:hover {
+    background-color: #1A252F;
+}
+.compare-container{
+    display: flex;
+}
+
+

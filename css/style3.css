@@ -1,0 +1,97 @@
+body{
+    background: #1f4d5b;
+    margin: 0;
+    height: 100vh;
+    font-size: 16px;
+}
+.result-container{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    background: #9ccbd2;
+    justify-content: space-around;
+    max-width: 80%;
+    margin: auto;
+}
+.title{
+    text-align: center;
+    color: #1f4d5b;
+}
+.line{
+    width: 100%;
+    border-color: #030b0c;
+}
+.winner-text-container{
+    display: flex;
+    align-items: center;
+    min-height: 100px;
+}
+.winner-text{
+    padding-left: 20px;
+    align-self: center;
+    height: 100px;
+    width: 150px;
+    background: #cceea2;
+    box-sizing: border-box;
+    font-size: 30px;
+    color: #1f4d5b;
+}
+.points-number-text{
+    text-align: center;
+    margin-top: 1%;
+}
+.points-number-container{
+    margin-top: 1%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.points-number{
+    display: flex;
+    flex-direction: column;
+    background: #374664;
+    box-sizing: border-box;
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+    text-align: center;
+    justify-content: center;
+    color: #cceea2;
+    font-size: 1.5rem;
+}
+.history-text-container{
+    display: flex;
+    padding: 20px;
+    box-sizing: border-box;
+}
+.history-text{
+
+}
+.grid-history-container{
+    margin-top: 3%;
+    display: grid;
+    grid-template-columns: 30% 50% 20%;
+}
+.grid-item {
+    background-color: #f2f2f2;
+    padding: 20px;
+    text-align: center;
+    border: 1px solid #a8ee56;
+}
+
+.sticky-item{
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background-color: #f2f2f2;
+    padding: 20px;
+    text-align: center;
+    border: 1px solid #a8ee56;
+}
+
+
+
+
+
+
+
