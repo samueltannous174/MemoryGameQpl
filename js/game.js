@@ -227,7 +227,7 @@ function endGame() {
     console.log('Supabase Instance: ', supabase)
 
     const insertWinnerAndPoints = async () => {
-        const { data: gameLogData, error: gameLogError } = await supabase
+        const { data: gameData, error: gameLogError } = await supabase
             .from('game')
             .insert(savedData)
             .select();
@@ -238,20 +238,19 @@ function endGame() {
             return;
         }
 
-
         let insertedIds = [];
-        if (gameLogData) {
-            insertedIds = gameLogData.map(item => item.id);
+        if (gameData) {
+            insertedIds = gameData.map(item => item.id);  // get the id of the add row
             console.log('Inserted game log IDs:', insertedIds);
         } else {
             console.log('No data returned from game-logs insert.');
         }
-        logInsert(insertedIds[0])
+        logInsert(insertedIds[0]) // pas the id to the insert log
     };
     insertWinnerAndPoints();
 
     const  logInsert= async(gameId)=>{
-        memoryGame.gameLog.map((item)=>item.foreignKey= gameId)
+        memoryGame.gameLog.map((item)=>item.foreignKey= gameId)  //add the foreign key which equals the game id
         const { data: logData, error: logError } = await supabase
             .from('logs')
             .insert(memoryGame.gameLog)

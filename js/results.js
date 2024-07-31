@@ -15,13 +15,13 @@ const getLastId = async () => {
         return null;
     } else {
         console.log('Fetched data:', data);
-        return data[0]?.id;
+        return data[0]?.id;   //get the last game id which presents the current game
     }
 };
 
 const lastId = await getLastId();
 
-const getResultsById = async (id) => {
+const getResultsById = async (id) => {   //getting results of winner name and points
     const { data, error } = await supabase
         .from('game')
         .select('*')
@@ -50,7 +50,7 @@ if (lastId) {
         }
     }
 
-    const getLogsByGameId = async (gameId) => {
+    const getLogsByGameId = async (gameId) => {  //getting logs
         const { data, error } = await supabase
             .from('logs')
             .select('*')
