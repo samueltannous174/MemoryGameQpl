@@ -1,0 +1,14 @@
+{
+  "description": "",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.45.0",
+    "vite": "^5.3.5"
+  },
+  "type": "module",
+  "name": "My extension",
+
+  "permissions": [
+    "offscreen"
+  ]
+
+}
