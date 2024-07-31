@@ -45,15 +45,16 @@ function initializeGameBoard() {
         card.textContent = i+1;
         gameBoard.appendChild(card);
     }
-    gameBoard.addEventListener('click', function(event) {  //event listener on the grid container
+    function handleCardClick(event) {
         if (event.target.classList.contains('card')) {
             onCardClick(event.target);
-            if (memoryGame.success){   //remove the event
-                gameBoard.removeEventListener('click', arguments.callee);
-                console.log("Congratulations! You've won the game!");
+            if (memoryGame.gameFinished) {
+                gameBoard.removeEventListener('click', handleCardClick);
             }
         }
-    });
+    }
+    gameBoard.addEventListener('click', handleCardClick);
+
     document.getElementById('reset-button').addEventListener('click', resetAllCards);
 }
 function initializePlayerNames() {
