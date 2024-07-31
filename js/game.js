@@ -14,6 +14,7 @@ let timeoutId; //to remove it at the end
 const savedData={}
 
 const duplicatedImages = [...images, ...images];
+
 const memoryGame = {
     currentSelectionCloned: [],
     currentSelection: [],
@@ -31,11 +32,10 @@ const memoryGame = {
 let shuffledArray = shuffleArray(duplicatedImages); // shuffle the duplicate images array
 function shuffleArray(array) {return array.sort(() => Math.random() - 0.5);}
 
-document.addEventListener('DOMContentLoaded', () => {
     switchTurn(); // the first round
     initializeGameBoard();
     initializePlayerNames();
-});
+
 function initializeGameBoard() {
     const gameBoard = document.getElementById('game-board');
 
@@ -270,8 +270,7 @@ function endGame() {
         }
     }
     timeoutId = setTimeout(() => {
-        window.location.href = 'results.html';
-        clearTimeout(timeoutId)
+        window.navigate('/game');
     }, 1000);
 }
 
