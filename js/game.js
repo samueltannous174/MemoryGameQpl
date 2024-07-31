@@ -1,3 +1,4 @@
+import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
 const images = [
     "https://img.freepik.com/free-photo/view-woman-snowboarding-with-pastel-shades-dreamy-landscape_23-2151505145.jpg?t=st=1721897156~exp=1721900756~hmac=9d7351e51992d303ea83fdc21d51e97792561f0f8f2b914ce09673ec014a4587&w=360",
     "https://img.freepik.com/free-photo/portrait-woman-competing-olympic-games-championship_23-2151460420.jpg?t=st=1721895112~exp=1721898712~hmac=424c00e5860882539cac4b845788401c96f65f48a1bfb90927db95e26629ea21&w=996",
@@ -10,6 +11,8 @@ const images = [
     "https://img.freepik.com/free-photo/man-moving-giant-tire-wheel-gym_651396-296.jpg?t=st=1722003367~exp=1722006967~hmac=a70a8504ce91ed2059eb82d9fffa9eabe71e4b376726d165b270ad9e750f8fe8&w=360"
 ];
 let timeoutId; //to remove it at the end
+const savedData={}
+
 const duplicatedImages = [...images, ...images];
 const memoryGame = {
     currentSelectionCloned: [],
@@ -19,8 +22,11 @@ const memoryGame = {
     success: false,
     buttonsStates: Array(18).fill(false),
     gameLog: [],
-    gameFinished: false
+    gameFinished: false,
+    winner:"",
+    winnerPoints:""
 };
+
 
 let shuffledArray = shuffleArray(duplicatedImages); // shuffle the duplicate images array
 function shuffleArray(array) {return array.sort(() => Math.random() - 0.5);}
@@ -53,7 +59,6 @@ function initializeGameBoard() {
 function initializePlayerNames() {
     const player1Name = localStorage.getItem('player1Name');
     const player2Name = localStorage.getItem('player2Name');
-
     document.getElementById('player-one-label').textContent = player1Name;
     document.getElementById('player-two-label').textContent = player2Name;
 }
@@ -207,11 +212,68 @@ function endGame() {
         : playerTwoPoints > playerOnePoints ? `Winner Is ${player2Name}`
             : 'Draw';
     const winnerPoints = Math.max(playerOnePoints, playerTwoPoints).toString();
-    localStorage.setItem('winner', winner);
-    localStorage.setItem('winner-points', winnerPoints);
-    localStorage.setItem('gameLog', JSON.stringify(memoryGame.gameLog));
-    timeoutId = setTimeout(() => {window.location.href = 'results.html';
-        clearTimeout(timeoutId)
-        }, 2000);
+    // localStorage.setItem('winner', winner);
+    memoryGame.winner = winner
 
+    // localStorage.setItem('winner-points', winnerPoints);
+    memoryGame.winnerPoints = winnerPoints
+    // localStorage.setItem('gameLog', JSON.stringify(memoryGame.gameLog));
+
+
+    savedData.winner = memoryGame.winner
+    savedData.points = memoryGame.winnerPoints
+    const supabase = createClient('https://fqmawwzhogveaypwhxmd.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZxbWF3d3pob2d2ZWF5cHdoeG1kIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjIyNTM4NjQsImV4cCI6MjAzNzgyOTg2NH0.njz-zhNI6JEK1frjirCEdKjnVRByEUbUyGHeGNrn0G0')
+    console.log('Supabase Instance: ', supabase)
+
+    const insertWinnerAndPoints = async () => {
+        const { data: gameLogData, error: gameLogError } = await supabase
+            .from('game')
+            .insert(savedData)
+            .select();
+
+        if (gameLogError) {
+            console.error('Error inserting game logs:', gameLogError.message);
+            console.error('Error details:', gameLogError);
+            return;
+        }
+
+
+        let insertedIds = [];
+        if (gameLogData) {
+            insertedIds = gameLogData.map(item => item.id);
+            console.log('Inserted game log IDs:', insertedIds);
+        } else {
+            console.log('No data returned from game-logs insert.');
+        }
+        logInsert(insertedIds[0])
+    };
+    insertWinnerAndPoints();
+
+    const  logInsert= async(gameId)=>{
+        memoryGame.gameLog.map((item)=>item.foreignKey= gameId)
+        const { data: logData, error: logError } = await supabase
+            .from('logs')
+            .insert(memoryGame.gameLog)
+            .select();
+
+        if (logError) {
+            console.error('Error inserting logs:', logError.message);
+            console.error('Error details:', logError);
+            return;
+        }
+
+        if (logData) {
+            const logInsertedIds = logData.map(item => item.id);
+            console.log('Inserted log IDs:', logInsertedIds);
+        } else {
+            console.log('No data returned from logs insert.');
+        }
+    }
+    timeoutId = setTimeout(() => {
+        window.location.href = 'results.html';
+        clearTimeout(timeoutId)
+    }, 1000);
 }
+
+
+
