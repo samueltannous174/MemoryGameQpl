@@ -103,7 +103,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-    document.addEventListener('gameFinished', function() {
+    document.addEventListener('gameFinished', function() {  // to show results after game finished
         showSection('results');
     })
 
