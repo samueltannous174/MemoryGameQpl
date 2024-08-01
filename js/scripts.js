@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (resultsPage) resultsPage.classList.add('hidden');
 
         if (section === 'entry') {
-            if (!entryForm) entryForm = createEntryForm();
+            if (!entryForm) entryForm = createEntryForm();  //create only when need
             entryForm.classList.remove('hidden');
             document.title = "Welcome To Memory Game";
             history.pushState(null, "", "/entry");
