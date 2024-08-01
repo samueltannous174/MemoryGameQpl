@@ -1,6 +1,5 @@
 import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
 document.addEventListener('gameInitialized', function() {
-
     const images = [
         "https://img.freepik.com/free-photo/view-woman-snowboarding-with-pastel-shades-dreamy-landscape_23-2151505145.jpg?t=st=1721897156~exp=1721900756~hmac=9d7351e51992d303ea83fdc21d51e97792561f0f8f2b914ce09673ec014a4587&w=360",
         "https://img.freepik.com/free-photo/portrait-woman-competing-olympic-games-championship_23-2151460420.jpg?t=st=1721895112~exp=1721898712~hmac=424c00e5860882539cac4b845788401c96f65f48a1bfb90927db95e26629ea21&w=996",
@@ -86,7 +85,6 @@ document.addEventListener('gameInitialized', function() {
             endGame();
         }
     }
-
 
     function onCardClick(event) {
         const cardIndex = event.textContent - 1

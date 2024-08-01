@@ -4,4 +4,3 @@ document.addEventListener('gameInitialized', function() {
     localStorage.setItem('player1Name', player1Name);
     localStorage.setItem('player2Name', player2Name);
 })
-

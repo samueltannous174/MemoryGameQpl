@@ -1,11 +1,10 @@
 document.addEventListener('DOMContentLoaded', function () {
     const content = document.getElementById('content');
     var entryForm,mainGame,resultsPage
-
     //welcome page
     function createEntryForm() {
         const entryForm = document.createElement('form');
-        entryForm.className = 'form-container hidden';
+        entryForm.className = 'form-container ';
         entryForm.innerHTML = `
             <h1>Welcome To Memory Game</h1>
             <label class="enter-names-text">Please enter players names: </label>
@@ -25,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function createMainGame() {
         const mainGame = document.createElement('div');
-        mainGame.className = 'container hidden';
+        mainGame.className = 'container';
         mainGame.innerHTML = `
             <h1 class="title">Memory Game</h1>
             <hr class="line">
@@ -59,9 +58,10 @@ document.addEventListener('DOMContentLoaded', function () {
         return mainGame;
     }
 
+
     function createResultsPage() {
         const resultsPage = document.createElement('div');
-        resultsPage.className = 'result-container hidden';
+        resultsPage.className = 'result-container ';
         resultsPage.innerHTML = `
             <h1 class="title">Memory Game</h1>
             <hr class="line">
@@ -81,26 +81,30 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function showSection(section) {
-        if (entryForm) entryForm.classList.add('hidden');
-        if (mainGame) mainGame.classList.add('hidden');
-        if (resultsPage) resultsPage.classList.add('hidden');
-
+        if (entryForm) {
+            content.removeChild(entryForm);
+            entryForm = null;
+        }
+        if (mainGame) {
+            content.removeChild(mainGame);
+            mainGame = null;
+        }
+        if (resultsPage) {
+            content.removeChild(resultsPage);
+            resultsPage = null;
+        }
         if (section === 'entry') {    // to show the selected , change url
              entryForm = createEntryForm();
-            entryForm.classList.remove('hidden');
             document.title = "Welcome To Memory Game";
             history.pushState(null, "", "/entry");
         } else if (section === 'main') {
              mainGame = createMainGame();
-            mainGame.classList.remove('hidden');
             document.title = "Memory Game";
             history.pushState(null, "Memory Game", "/game");
             const initEvent = new Event('gameInitialized');
             document.dispatchEvent(initEvent);
         } else if (section === 'results') {
-            if (mainGame) mainGame.classList.add('hidden');
             resultsPage = createResultsPage();
-            resultsPage.classList.remove('hidden');
             document.title = "Game Results";
             history.pushState(null, "Game Results", "/results");
             history.pushState(null, "Memory Game", "/game");
@@ -108,7 +112,6 @@ document.addEventListener('DOMContentLoaded', function () {
             document.dispatchEvent(initEvent);
         }
         console.log(`Section: ${section}, Title: ${document.title}, URL: ${window.location.href}`);
-
     }
 
     showSection('entry');
@@ -123,8 +126,10 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
 
+
     document.addEventListener('gameFinished', function() {  // to show results after game finished
         showSection('results');
     })
+
 
 });
