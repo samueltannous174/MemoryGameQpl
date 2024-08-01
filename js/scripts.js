@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
     const content = document.getElementById('content');
     //welcome page
-    const entryForm = document.createElement('form');
+    const entryForm = document.createElement('form');           //create the html dynamically
     entryForm.className = 'form-container hidden'; // init with 'hidden' class
     entryForm.innerHTML = `
         <h1>Welcome To Memory Game</h1>
@@ -50,7 +50,6 @@ document.addEventListener('DOMContentLoaded', function () {
     `;
     content.appendChild(mainGame);
 
-    // Create results page
     const resultsPage = document.createElement('div');
     resultsPage.className = 'result-container hidden';
     resultsPage.innerHTML = `
@@ -74,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function () {
         mainGame.classList.add('hidden');
         resultsPage.classList.add('hidden');
 
-        if (section === 'entry') {
+        if (section === 'entry') {    // to show the selected , change url
             entryForm.classList.remove('hidden');
             document.title = "Welcome To Memory Game";
             history.pushState(null, "", "/entry");
@@ -102,16 +101,13 @@ document.addEventListener('DOMContentLoaded', function () {
         showSection('main');
     });
 
-    entryForm.addEventListener('', function (event) {
 
-    });
 
     document.addEventListener('gameFinished', function() {
         showSection('results');
     })
 
 
-
-        const initEvent = new Event('gameInitialized');
+    const initEvent = new Event('gameInitialized');
     document.dispatchEvent(initEvent);
 });
