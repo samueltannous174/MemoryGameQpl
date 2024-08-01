@@ -26,6 +26,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function createMainGame() {
         const mainGame = document.createElement('div');
+
         mainGame.className = 'container';
         mainGame.innerHTML = `
             <h1 class="title">Memory Game</h1>
@@ -99,6 +100,12 @@ document.addEventListener('DOMContentLoaded', function () {
              entryForm = createEntryForm();
             document.title = "Welcome To Memory Game";
             history.pushState(null, "", "/entry");
+            document.addEventListener('gameInitialized', function() {
+             const player1Name = document.getElementById('player1').value;
+            const player2Name = document.getElementById('player2').value;
+            localStorage.setItem('player1Name', player1Name);
+            localStorage.setItem('player2Name', player2Name);
+})
         } else if (section === 'main') {
              mainGame = createMainGame();
             document.title = "Memory Game";
