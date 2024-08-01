@@ -1,3 +1,30 @@
+#content{
+    background: #1f4d5b;
+    margin: 0;
+    height: 100vh;
+    width: 100%;
+}
+.hidden {
+    display: none;
+}
+.form-container{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    background-color: white;
+    z-index: 1;
+    overflow-x: hidden;
+
+}
+
+.container{
+    position: absolute;
+    width: 100%;
+    background-color: white;
+    z-index: 1;
+}
 body{
     background: #1f4d5b;
     margin: 0;
@@ -14,6 +41,8 @@ img {
     justify-content: space-around;
     background: #9ccbd2;
     position: relative;
+
+
 }
 .title{
     text-align: center;
@@ -107,7 +136,7 @@ img {
     position: absolute;
     width: 100%;
     height: 100%;
-    z-index: 10;
+    z-index: 100;
     visibility: hidden;
     background-color: rgba(128, 128, 128, 0.5);
     backdrop-filter: blur(10px);

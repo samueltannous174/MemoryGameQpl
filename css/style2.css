@@ -5,24 +5,28 @@ body {
     background: #374664;
     display: flex;
 }
+.hidden {
+    display: none;
+}
 .form-container{
     margin: auto;
-    display: flex;
-    flex-direction: column;
     justify-content: space-around;
     background: #9ccbd2;
     box-sizing: border-box;
     padding: 20px;
     border-radius: 10px;
-    height: 60%;
+    width: 80%;
+    max-width: 400px;
 }
 .player-one-input{
     display: flex;
     gap: 10px;
+    margin-top: 2%;
 }
 .player-two-input{
     display: flex;
     gap: 10px;
+    margin-top: 2%;
 }
 
 h1{
@@ -36,6 +40,7 @@ h1{
     box-sizing: border-box;
     padding: 10px;
     outline: none;
+    width: 60%;
 }
 .input-text{
     background: #051c49;
@@ -46,7 +51,7 @@ h1{
 }
 .input-one{
      color: rgba(189, 148, 250, 0.68);
- }
+}
 .enter-names-text{
     color: #1f4d5b;
 }
@@ -59,6 +64,7 @@ h1{
     font-weight: bold;
     border-radius: 5px;
     height: 50px;
+    margin-top: 2%;
 }
 button:hover {
     background-color: #1A252F;

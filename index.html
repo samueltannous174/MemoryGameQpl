@@ -1,29 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome Page</title>
-    <link rel="stylesheet" href="css/style2.css">
-    <link rel="icon" href="https://developer.android.com/static/images/cluster-illustrations/controllers.svg" type="image/x-icon">
+<!doctype html>
+<html class="no-js" lang="">
 
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Memory Game</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style2.css">
+    <link rel="stylesheet" href="css/style3.css">
+    <link rel="icon" href="https://developer.android.com/static/images/cluster-illustrations/controllers.svg" type="image/x-icon">
+    <script src="https://kit.fontawesome.com/a5f59e3a84.js" crossorigin="anonymous"></script>
 </head>
+
 <body>
-<form id="form-container" class="form-container">
-    <h1>
-        Welcome To Memory Game
-    </h1>
-    <label class="enter-names-text">Please enter players names: </label>
-    <div class="player-one-input">
-        <label class="input-text input-one" for="player1">Player 1</label>
-        <input class="input" id="player1" required>
-    </div>fa
-    <div class="player-two-input">
-        <label class="input-text input-two" for="player2">Player 2</label>
-        <input id="player2" class="input" required>
-    </div>
-    <button class="play-button" type="submit">Play</button>
-</form>
-<script type="module" src="js/entry.js"></script>
+<div id="content"></div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script type="module" src="js/scripts.js"></script>
+<script type="module" src="js/game.js"></script>
+<script type="module" src="js/results.js"></script>
+
+
 </body>
 </html>
