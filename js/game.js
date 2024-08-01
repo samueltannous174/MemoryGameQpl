@@ -87,6 +87,7 @@ document.addEventListener('gameInitialized', function() {
         }
     }
 
+
     function onCardClick(event) {
         const cardIndex = event.textContent - 1
         if (memoryGame.buttonsStates[cardIndex] === true) {    // if already opened
